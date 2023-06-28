@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import Header from './header/Hearder';
 import Dummy from './dummy/Dummy';
+import Form from './form/Form';
 // api
 import getWordFromApi from '../services/api';
 // styles
@@ -28,16 +29,14 @@ function App() {
     ev.target.setSelectionRange(0, 1);
   };
 
-  const handleChange = (ev) => {
+  const handleChange = (value) => {
     let re = /^[a-zA-ZñÑá-úÁ-Ú´]$/; //add regular pattern 
-    if (re.test(ev.target.value) || ev.target.value === '') {
-      handleLastLetter(ev.target.value);
+    if (re.test(value) || value === '') {
+      handleLastLetter(value);
     }
   };
 
-  const handleSubmit = (ev) => {
-    ev.preventDefault();
-  };
+  
 
   const getNumberOfErrors = () => {
     const errorLetters = userLetters.filter(
@@ -95,23 +94,8 @@ function App() {
             <h2 className='title'>Letras falladas:</h2>
             <ul className='letters'>{renderErrorLetters()}</ul>
           </div>
-          <form className='form' onSubmit={handleSubmit}>
-            <label className='title' htmlFor='last-letter'>
-              Escribe una letra:
-            </label>
-            <input
-              autoFocus
-              autoComplete='off'
-              className='form__input'
-              maxLength='1'
-              type='text'
-              name='last-letter'
-              id='last-letter'
-              value={lastLetter}
-              onKeyDown={handleKeyDown}
-              onChange={handleChange}
-            />
-          </form>
+          <Form lastLetter={lastLetter} handleKeyDowN = {handleKeyDown}
+                handleChangE = {handleChange}/>
         </section>
        <Dummy numberOfErrors = {getNumberOfErrors()}/>
       </main>

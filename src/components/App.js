@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import Header from './header/Hearder';
 import Dummy from './dummy/Dummy';
 import Form from './form/Form';
+import Footer from './Footer/Footer';
 // api
 import getWordFromApi from '../services/api';
 // styles
@@ -9,6 +10,7 @@ import '../styles/App.scss';
 import '../styles/Dummy.scss';
 import '../styles/Letters.scss';
 import '../styles/Form.scss';
+import { Route, Routes } from 'react-router-dom';
 //import '../styles/Header.scss';
 
 function App() {
@@ -98,7 +100,12 @@ function App() {
                 handleChangE = {handleChange}/>
         </section>
        <Dummy numberOfErrors = {getNumberOfErrors()}/>
+       
       </main>
+      {/*<Routes>
+        <Route path='/' >
+      </Routes>*/}
+      <Footer/>
     </div>
   );
 }
